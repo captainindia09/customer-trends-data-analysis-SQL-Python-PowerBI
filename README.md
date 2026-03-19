@@ -1,92 +1,57 @@
-# 👨🏻‍💻Customer Behavior Data Analyst Portfolio Project
-This project represents a complete, industry standard, end-to-end data analytics workflow, designed to mirror the real responsibilities of professional analysts in modern business environments. The project encompasses all critical stages of data analysis, from data preparation and modeling to insight generation, visualization, and reporting.
+# 🛍️ Customer Shopping Behavior Analysis: Data Strategy Portfolio
 
-This project is perfect for:
-- 📊 Data Analyst aspirants who want to build a strong **Portfolio Project** for interviews and LinkedIn
-- 📚 Anyone learning Python, SQL, and Power BI
-- 💼 Professionals preparing for interviews in Data Analytics, Data Science or Product Analytics roles
+## 📌 Project Architecture
+This repository demonstrates an end-to-end data engineering and analytics workflow. It transforms raw retail data into actionable business intelligence using a modern stack: **Python (Pandas) → SQL (PostgreSQL/MySQL) → Power BI**.
 
-# **🎥 Watch this [YouTube video](https://www.youtube.com/watch?v=5PrZvPeUw60&list=PLAx-M6Di0SisFJ1rv5M_FRHUlGA5rtUf_&index=3) to implement the full project from scratch:**  
-[![Advanced Data Analysis Portfolio Project using Retail Customer Data](https://github.com/user-attachments/assets/abbb6371-a0b2-4bec-a304-7c7da98658b6)](https://www.youtube.com/watch?v=x8dfQkKTyP0&list=PLAx-M6Di0SisFJ1rv5M_FRHUlGA5rtUf_&index=2)
-🔗 *Link to Video:* [Watch on Youtube](https://www.youtube.com/watch?v=5PrZvPeUw60&list=PLAx-M6Di0SisFJ1rv5M_FRHUlGA5rtUf_&index=3)
+---
 
+## 🚀 The Data Lifecycle
 
-## 📌 Project Overview
-The goal of this project is to simulate a corporate-grade end-to-end data analytics workflow, demonstrating the ability to translate raw data into strategic business intelligence by:
+### 1. Data Ingestion & Exploratory Data Analysis (EDA)
+The journey begins in the `Customer_Shopping_Behavior_Analysis.ipynb` notebook. I perform an initial audit of 3,900 customer records to understand the demographic distributions (Age, Gender) and purchasing habits (Category, Frequency).
 
-✅ Data Preparation,Modeling & Exploratory Data Analysis (Python): Clean and transform the raw dataset for analysis.
+### 2. Advanced Data Cleaning (Python)
+I implemented a robust cleaning pipeline to ensure data integrity:
+- **Missing Value Imputation**: Instead of dropping records, I used category-specific medians to fill in missing `Review Ratings`, preserving the statistical distribution.
+- **Structural Standardization**: All columns were converted to `snake_case` for SQL compatibility and code readability.
+- **Feature Engineering**:
+  - **Age Segmentation**: Applied `pd.qcut` to create `age_group` categories (Young Adult, Adult, Middle-aged, Senior) for easier demographic analysis.
+  - **Temporal Normalization**: Mapped textual purchase frequencies (e.g., "Fortnightly") to actual numeric days (e.g., `14`) to enable mathematical calculations on LTV (Lifetime Value).
+- **Redundancy Removal**: Dropped duplicate indicators (like `promo_code_used` when `discount_applied` already covered the logic).
 
-✅ Data Analysis (SQL): Simulate business transactions, and run queries to extract insights on customer segments, loyalty, and purchase drivers.
+### 3. Database Integration (SQL)
+The cleaned dataset is programmatically pushed to a SQL database. Using `SQLAlchemy` and `psycopg2`, the Python script creates a high-performance table (`customer`).
+*   **Queries**: I use `customer_behavior_sql_queries.sql` to answer critical business questions:
+    - Identifying the highest-spending loyal customers.
+    - Calculating average ratings per product category.
+    - Analyzing payment method preferences across different locations.
 
-✅ Visualization & Insights (Power BI): Build an interactive dashboard that highlights key patterns and trends, enabling stakeholders to make data-driven decisions.
+### 4. Interactive Visualization (Power BI)
+The final stage connects the SQL database to `customer_behavior_dashboard.pbix`. 
+- **KPI Tracking**: Real-time tracking of total revenue and average purchase amounts.
+- **Behavioral Analysis**: Slicing the data by season, shipping type, and subscription status.
+- **Actionable Insights**: Visualizing which locations are "hot" for specific clothing categories.
 
-✅ Report and Presentation: Write a clear project report summarizing your key findings and business recommendations. Prepare a presentation that visually communicates insights and actionable recommendations to stakeholders.
+---
 
-![Project Workflow](https://github.com/user-attachments/assets/8bbd5dc9-eb6c-40c1-8f19-c08b4107f654)
+## 🛠️ Tech Stack & Requirements
+- **Language**: Python 3.12+
+- **Libraries**: Pandas, SQLAlchemy, Psycopg2, Matplotlib
+- **Database**: PostgreSQL / MySQL / SQL Server
+- **BI Tool**: Microsoft Power BI Desktop
 
-## 🛠️ How to Use This Project
+---
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/amlanmohanty1/customer-trends-data-analysis-SQL-Python-PowerBI.git
-   cd customer-trends-data-analysis-SQL-Python-PowerBI
-   ```
-2. **Open Customer_Shopping_Behavior_Analysis.ipynb notebook**
+## 📂 Repository Breakdown
+- `Customer_Shopping_Behavior_Analysis.ipynb`: The core analytical engine (Python).
+- `customer_behavior_sql_queries.sql`: Advanced SQL queries for deep-dives.
+- `customer_behavior_dashboard.pbix`: The visual storytelling layer.
+- `customer_shopping_behavior.csv`: The raw source data.
+- `Business Problem Document.pdf`: Context and objectives for the analysis.
 
-    This file contains:
+---
 
-      - Data Import
-
-      - Data exploration
-
-      - Data cleaning
-
-      - Connection to SQL Database
-  
-3. **Load the data from Python notebook into MySQL/PostgreSQL/MS SQL Server**
-
-      - Create a database in SQL
-
-      - Run Python code to load data into SQL database
-  
-      - Open **customer_behavior_sql_queries.sql**
-  
-      - Answer Business Questions using SQL Queries 
-      
-4. **Connect the SQL Database to Power BI**
-
-      - Open **customer_behavior_dashboard.pbix**
-   
-      - Create interactive dashboard in Power BI
-  
-6. **Create Project Report and Presentation**
-
-      - Create project report
-   
-      - Build presentation deck using Gamma AI
-  
-7. **Follow along with the YouTube video for full walkthrough. 👨‍💼**
-
-
-## 📜 License
-
-MIT — feel free to fork, star, and use in your portfolio.
-
-## 👨‍💻 About the Author
-Hey, I’m Amlan Mohanty, a Data Analyst & Content Creator.
-I break down complex data topics into simple, practical content that actually helps you land a job.
-
- ### 🚀 Stay Connected & Join my Data Community
-If you enjoyed this project and want to keep learning and growing as a data analyst, let’s stay in touch! I regularly share content around SQL, data analytics, portfolio projects, job tips, and more.
-
-🎥 YouTube: [Amlan Mohanty](https://www.youtube.com/@amlanmohanty1)
-- Beginner-friendly tutorials, real-world projects, job and career advice
-
-📺 Instagram: [datacareerschool](https://www.instagram.com/datacareerschool/)
-- Quick SQL tips, data memes, and behind-the-scenes content
-
-💼 LinkedIn: [Amlan Mohanty](https://www.linkedin.com/in/amlanmohanty1/)
-- Let’s connect professionally and grow your data career
-
-
-## 💡 Thanks for checking out the project! Your support means a lot! Feel free to star ⭐ this repo or share it with someone learning Data Analytics.🚀
+## 👨‍💻 Developed by
+**Captain India**  
+*Data Strategist & Analytics Engineer*  
+[Your LinkeIn/Portfolio Link here]
